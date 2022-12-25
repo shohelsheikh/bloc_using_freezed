@@ -1,0 +1,236 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import '../widgets/error_message.dart';
+import '../widgets/loading_indicator.dart';
+import 'bloc/bloc.dart';
+
+import 'package:bloc_with_freezed_with_test/widgets/show_toast.dart';
+class LoginScreen extends StatefulWidget {
+  LoginScreen();
+
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<LoginScreen>
+    with SingleTickerProviderStateMixin {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+    late LoginBloc _bloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _bloc = LoginBloc();
+  }
+
+  @override
+  void dispose() {
+    _bloc.close();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      BlocProvider<LoginBloc>(
+        create: (context) => _bloc,
+        child: _buildEditScreen(context),
+      );
+  }
+
+  Widget _buildEditScreen(BuildContext context) {
+     return BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
+      return SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(
+                Icons.close,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            title: const Text('Login Test',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                )),
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
+                  colors: <Color>[Color(0xFF2793F1), Color(0xFF2793F1)],
+                ),
+              ),
+            ),
+          ),
+          bottomNavigationBar: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                width: MediaQuery.of(context).size.width * 0.4,
+                child: MaterialButton(
+                  elevation: 0,
+                  color: Color(0xFFF2F2F2),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  onPressed:  () {},
+                  child: const Text(
+                    "Back",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.4,
+                child: MaterialButton(
+                  elevation: 0,
+                  color: const Color(0xFF2793F1),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  disabledColor: const Color(0XFFF2F2F2),
+                  textColor: Colors.white,
+                  disabledTextColor: Colors.black,
+                  onPressed: (!state.isModified ||
+                              !_bloc.isValid)
+                      ? null
+                      : () {
+                          !state.isModified || !_bloc.isValid
+                              ? null
+                              : _bloc.add(  LoginToAccount());
+                        },
+                  child: Text(
+                    !state.isModified || !_bloc.isValid || state.isLoading
+                        ? "Save"
+                        : "Save",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          body: BlocListener<LoginBloc, LoginState>(
+
+            listener: (context, state) {
+              if (state.isSucceed) {
+
+                ShowToast.showToast(state.successMsg);
+
+              } else if (state.isFailed) {
+                FocusScope.of(context).unfocus();
+                ShowToast.showToast(state.error);
+              }
+            },
+            child: Stack(
+              children: <Widget>[
+                _detailedWidget(_bloc, state),
+                state.isBusy()
+                    ? Positioned.fill(
+                        child: LoadingIndicator(
+                            text:  'Loading'))
+                    : Container(),
+              ],
+            ),
+          ),
+        ),
+      );
+    });
+  }
+
+  Widget _detailedWidget(LoginBloc bloc, LoginState state) {
+    return ConstrainedBox(
+      constraints: BoxConstraints.expand(),
+      child: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.only(left: 12, top: 24, right: 12, bottom: 24),
+          child: _buildForm(context, bloc, state),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildForm(
+    BuildContext context,
+    LoginBloc bloc,
+    LoginState state,
+  ) {
+    final size = MediaQuery.of(context).size;
+
+    _emailController.value = _emailController.value.copyWith(text: state.email);
+
+    _passwordController.value =
+        _passwordController.value.copyWith(text: state.password);
+
+    return Form(
+      child: Column(children: <Widget>[
+
+        TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autocorrect: true,
+          enableSuggestions: true,
+          textCapitalization: TextCapitalization.sentences,
+          readOnly: state.isBusy(),
+          controller: _emailController,
+          keyboardType: TextInputType.text,
+          onChanged: (value) => bloc.add(EmailChanged(value)),
+          validator: (_) => !state.emailValidation.isValid
+              ? state.emailValidation.errorMessage
+              : null,
+          inputFormatters: [LengthLimitingTextInputFormatter(255)],
+          decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              helperText: '',
+              labelText: 'Email',
+              errorMaxLines: 2),
+        ),
+
+        TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autocorrect: true,
+          enableSuggestions: true,
+          textCapitalization: TextCapitalization.sentences,
+          readOnly: state.isBusy(),
+          controller: _passwordController,
+          keyboardType: TextInputType.text,
+          onChanged: (value) => bloc.add(PasswordChanged(value)),
+          validator: (_) => !state.passwordValidation.isValid
+              ? state.passwordValidation.errorMessage
+              : null,
+          inputFormatters: [LengthLimitingTextInputFormatter(255)],
+          decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              helperText: '',
+              labelText: 'Password',
+              errorMaxLines: 2),
+        ),
+
+      ]),
+    );
+  }
+
+}

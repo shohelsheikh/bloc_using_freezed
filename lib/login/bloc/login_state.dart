@@ -7,7 +7,7 @@ part 'login_state.freezed.dart';
 @freezed
 abstract class LoginState implements _$LoginState {
   const LoginState._();
-
+// test
   const factory LoginState(
       {required String email,
       required String password,

@@ -113,16 +113,16 @@ class _LoginState extends State<LoginScreen>
                   disabledColor: const Color(0XFFF2F2F2),
                   textColor: Colors.white,
                   disabledTextColor: Colors.black,
-                  onPressed: (!state.isModified ||
+                  onPressed: (!state.isModified! ||
                               !_bloc.isValid)
                       ? null
                       : () {
-                          !state.isModified || !_bloc.isValid
+                          !state.isModified !|| !_bloc.isValid
                               ? null
                               : _bloc.add(  LoginToAccount());
                         },
                   child: Text(
-                    !state.isModified || !_bloc.isValid || state.isLoading
+                    !state.isModified! || !_bloc.isValid || state.isLoading!
                         ? "Save"
                         : "Save",
                     style: const TextStyle(
@@ -137,19 +137,19 @@ class _LoginState extends State<LoginScreen>
           body: BlocListener<LoginBloc, LoginState>(
 
             listener: (context, state) {
-              if (state.isSucceed) {
+              if (state.isSucceed!) {
 
-                ShowToast.showToast(state.successMsg);
+                ShowToast.showToast(state.successMsg.toString());
 
-              } else if (state.isFailed) {
+              } else if (state.isFailed!) {
                 FocusScope.of(context).unfocus();
-                ShowToast.showToast(state.error);
+                ShowToast.showToast(state.error.toString());
               }
             },
             child: Stack(
               children: <Widget>[
                 _detailedWidget(_bloc, state),
-                state.isBusy()
+                state.isBusy()!
                     ? Positioned.fill(
                         child: LoadingIndicator(
                             text:  'Loading'))
@@ -194,12 +194,12 @@ class _LoginState extends State<LoginScreen>
           autocorrect: true,
           enableSuggestions: true,
           textCapitalization: TextCapitalization.sentences,
-          readOnly: state.isBusy(),
+          readOnly: state.isBusy()!,
           controller: _emailController,
           keyboardType: TextInputType.text,
           onChanged: (value) => bloc.add(EmailChanged(value)),
-          validator: (_) => !state.emailValidation.isValid
-              ? state.emailValidation.errorMessage
+          validator: (_) => !state.emailValidation!.isValid
+              ? state.emailValidation?.errorMessage.toString()
               : null,
           inputFormatters: [LengthLimitingTextInputFormatter(255)],
           decoration: InputDecoration(
@@ -214,12 +214,12 @@ class _LoginState extends State<LoginScreen>
           autocorrect: true,
           enableSuggestions: true,
           textCapitalization: TextCapitalization.sentences,
-          readOnly: state.isBusy(),
+          readOnly: state.isBusy()!,
           controller: _passwordController,
           keyboardType: TextInputType.text,
           onChanged: (value) => bloc.add(PasswordChanged(value)),
-          validator: (_) => !state.passwordValidation.isValid
-              ? state.passwordValidation.errorMessage
+          validator: (_) => !state.passwordValidation!.isValid
+              ? state.passwordValidation?.errorMessage.toString()
               : null,
           inputFormatters: [LengthLimitingTextInputFormatter(255)],
           decoration: InputDecoration(

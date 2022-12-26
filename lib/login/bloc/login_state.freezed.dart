@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'login_state.dart';
 
@@ -12,20 +12,53 @@ part of 'login_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
+class _$LoginStateTearOff {
+  const _$LoginStateTearOff();
+
+  _LoginState call(
+      {String? email,
+      String? password,
+      FieldStatus? emailValidation,
+      FieldStatus? passwordValidation,
+      bool? isLoading,
+      bool? isModified,
+      bool? isSucceed,
+      bool? isFailed,
+      String? error,
+      String? successMsg}) {
+    return _LoginState(
+      email: email,
+      password: password,
+      emailValidation: emailValidation,
+      passwordValidation: passwordValidation,
+      isLoading: isLoading,
+      isModified: isModified,
+      isSucceed: isSucceed,
+      isFailed: isFailed,
+      error: error,
+      successMsg: successMsg,
+    );
+  }
+}
+
+/// @nodoc
+const $LoginState = _$LoginStateTearOff();
 
 /// @nodoc
 mixin _$LoginState {
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
-  FieldStatus get emailValidation => throw _privateConstructorUsedError;
-  FieldStatus get passwordValidation => throw _privateConstructorUsedError;
-  bool get isLoading => throw _privateConstructorUsedError;
-  bool get isModified => throw _privateConstructorUsedError;
-  bool get isSucceed => throw _privateConstructorUsedError;
-  bool get isFailed => throw _privateConstructorUsedError;
-  String get error => throw _privateConstructorUsedError;
-  String get successMsg => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get password => throw _privateConstructorUsedError;
+  FieldStatus? get emailValidation => throw _privateConstructorUsedError;
+  FieldStatus? get passwordValidation => throw _privateConstructorUsedError;
+  bool? get isLoading => throw _privateConstructorUsedError;
+  bool? get isModified => throw _privateConstructorUsedError;
+  bool? get isSucceed => throw _privateConstructorUsedError;
+  bool? get isFailed => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
+  String? get successMsg => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginStateCopyWith<LoginState> get copyWith =>
@@ -36,174 +69,169 @@ mixin _$LoginState {
 abstract class $LoginStateCopyWith<$Res> {
   factory $LoginStateCopyWith(
           LoginState value, $Res Function(LoginState) then) =
-      _$LoginStateCopyWithImpl<$Res, LoginState>;
-  @useResult
+      _$LoginStateCopyWithImpl<$Res>;
   $Res call(
-      {String email,
-      String password,
-      FieldStatus emailValidation,
-      FieldStatus passwordValidation,
-      bool isLoading,
-      bool isModified,
-      bool isSucceed,
-      bool isFailed,
-      String error,
-      String successMsg});
+      {String? email,
+      String? password,
+      FieldStatus? emailValidation,
+      FieldStatus? passwordValidation,
+      bool? isLoading,
+      bool? isModified,
+      bool? isSucceed,
+      bool? isFailed,
+      String? error,
+      String? successMsg});
 }
 
 /// @nodoc
-class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
-    implements $LoginStateCopyWith<$Res> {
+class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
   _$LoginStateCopyWithImpl(this._value, this._then);
 
+  final LoginState _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(LoginState) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = null,
-    Object? password = null,
-    Object? emailValidation = null,
-    Object? passwordValidation = null,
-    Object? isLoading = null,
-    Object? isModified = null,
-    Object? isSucceed = null,
-    Object? isFailed = null,
-    Object? error = null,
-    Object? successMsg = null,
+    Object? email = freezed,
+    Object? password = freezed,
+    Object? emailValidation = freezed,
+    Object? passwordValidation = freezed,
+    Object? isLoading = freezed,
+    Object? isModified = freezed,
+    Object? isSucceed = freezed,
+    Object? isFailed = freezed,
+    Object? error = freezed,
+    Object? successMsg = freezed,
   }) {
     return _then(_value.copyWith(
-      email: null == email
+      email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
+              as String?,
+      password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      emailValidation: null == emailValidation
+              as String?,
+      emailValidation: emailValidation == freezed
           ? _value.emailValidation
           : emailValidation // ignore: cast_nullable_to_non_nullable
-              as FieldStatus,
-      passwordValidation: null == passwordValidation
+              as FieldStatus?,
+      passwordValidation: passwordValidation == freezed
           ? _value.passwordValidation
           : passwordValidation // ignore: cast_nullable_to_non_nullable
-              as FieldStatus,
-      isLoading: null == isLoading
+              as FieldStatus?,
+      isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isModified: null == isModified
+              as bool?,
+      isModified: isModified == freezed
           ? _value.isModified
           : isModified // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSucceed: null == isSucceed
+              as bool?,
+      isSucceed: isSucceed == freezed
           ? _value.isSucceed
           : isSucceed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFailed: null == isFailed
+              as bool?,
+      isFailed: isFailed == freezed
           ? _value.isFailed
           : isFailed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      error: null == error
+              as bool?,
+      error: error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as String,
-      successMsg: null == successMsg
+              as String?,
+      successMsg: successMsg == freezed
           ? _value.successMsg
           : successMsg // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
-abstract class _$$_LoginStateCopyWith<$Res>
-    implements $LoginStateCopyWith<$Res> {
-  factory _$$_LoginStateCopyWith(
-          _$_LoginState value, $Res Function(_$_LoginState) then) =
-      __$$_LoginStateCopyWithImpl<$Res>;
+abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
+  factory _$LoginStateCopyWith(
+          _LoginState value, $Res Function(_LoginState) then) =
+      __$LoginStateCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call(
-      {String email,
-      String password,
-      FieldStatus emailValidation,
-      FieldStatus passwordValidation,
-      bool isLoading,
-      bool isModified,
-      bool isSucceed,
-      bool isFailed,
-      String error,
-      String successMsg});
+      {String? email,
+      String? password,
+      FieldStatus? emailValidation,
+      FieldStatus? passwordValidation,
+      bool? isLoading,
+      bool? isModified,
+      bool? isSucceed,
+      bool? isFailed,
+      String? error,
+      String? successMsg});
 }
 
 /// @nodoc
-class __$$_LoginStateCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$_LoginState>
-    implements _$$_LoginStateCopyWith<$Res> {
-  __$$_LoginStateCopyWithImpl(
-      _$_LoginState _value, $Res Function(_$_LoginState) _then)
-      : super(_value, _then);
+class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements _$LoginStateCopyWith<$Res> {
+  __$LoginStateCopyWithImpl(
+      _LoginState _value, $Res Function(_LoginState) _then)
+      : super(_value, (v) => _then(v as _LoginState));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _LoginState get _value => super._value as _LoginState;
+
   @override
   $Res call({
-    Object? email = null,
-    Object? password = null,
-    Object? emailValidation = null,
-    Object? passwordValidation = null,
-    Object? isLoading = null,
-    Object? isModified = null,
-    Object? isSucceed = null,
-    Object? isFailed = null,
-    Object? error = null,
-    Object? successMsg = null,
+    Object? email = freezed,
+    Object? password = freezed,
+    Object? emailValidation = freezed,
+    Object? passwordValidation = freezed,
+    Object? isLoading = freezed,
+    Object? isModified = freezed,
+    Object? isSucceed = freezed,
+    Object? isFailed = freezed,
+    Object? error = freezed,
+    Object? successMsg = freezed,
   }) {
-    return _then(_$_LoginState(
-      email: null == email
+    return _then(_LoginState(
+      email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
+              as String?,
+      password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      emailValidation: null == emailValidation
+              as String?,
+      emailValidation: emailValidation == freezed
           ? _value.emailValidation
           : emailValidation // ignore: cast_nullable_to_non_nullable
-              as FieldStatus,
-      passwordValidation: null == passwordValidation
+              as FieldStatus?,
+      passwordValidation: passwordValidation == freezed
           ? _value.passwordValidation
           : passwordValidation // ignore: cast_nullable_to_non_nullable
-              as FieldStatus,
-      isLoading: null == isLoading
+              as FieldStatus?,
+      isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isModified: null == isModified
+              as bool?,
+      isModified: isModified == freezed
           ? _value.isModified
           : isModified // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSucceed: null == isSucceed
+              as bool?,
+      isSucceed: isSucceed == freezed
           ? _value.isSucceed
           : isSucceed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFailed: null == isFailed
+              as bool?,
+      isFailed: isFailed == freezed
           ? _value.isFailed
           : isFailed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      error: null == error
+              as bool?,
+      error: error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as String,
-      successMsg: null == successMsg
+              as String?,
+      successMsg: successMsg == freezed
           ? _value.successMsg
           : successMsg // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -212,38 +240,38 @@ class __$$_LoginStateCopyWithImpl<$Res>
 
 class _$_LoginState extends _LoginState {
   const _$_LoginState(
-      {required this.email,
-      required this.password,
-      required this.emailValidation,
-      required this.passwordValidation,
-      required this.isLoading,
-      required this.isModified,
-      required this.isSucceed,
-      required this.isFailed,
-      required this.error,
-      required this.successMsg})
+      {this.email,
+      this.password,
+      this.emailValidation,
+      this.passwordValidation,
+      this.isLoading,
+      this.isModified,
+      this.isSucceed,
+      this.isFailed,
+      this.error,
+      this.successMsg})
       : super._();
 
   @override
-  final String email;
+  final String? email;
   @override
-  final String password;
+  final String? password;
   @override
-  final FieldStatus emailValidation;
+  final FieldStatus? emailValidation;
   @override
-  final FieldStatus passwordValidation;
+  final FieldStatus? passwordValidation;
   @override
-  final bool isLoading;
+  final bool? isLoading;
   @override
-  final bool isModified;
+  final bool? isModified;
   @override
-  final bool isSucceed;
+  final bool? isSucceed;
   @override
-  final bool isFailed;
+  final bool? isFailed;
   @override
-  final String error;
+  final String? error;
   @override
-  final String successMsg;
+  final String? successMsg;
 
   @override
   String toString() {
@@ -254,84 +282,79 @@ class _$_LoginState extends _LoginState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LoginState &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.emailValidation, emailValidation) ||
-                other.emailValidation == emailValidation) &&
-            (identical(other.passwordValidation, passwordValidation) ||
-                other.passwordValidation == passwordValidation) &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
-            (identical(other.isModified, isModified) ||
-                other.isModified == isModified) &&
-            (identical(other.isSucceed, isSucceed) ||
-                other.isSucceed == isSucceed) &&
-            (identical(other.isFailed, isFailed) ||
-                other.isFailed == isFailed) &&
-            (identical(other.error, error) || other.error == error) &&
-            (identical(other.successMsg, successMsg) ||
-                other.successMsg == successMsg));
+            other is _LoginState &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.password, password) &&
+            const DeepCollectionEquality()
+                .equals(other.emailValidation, emailValidation) &&
+            const DeepCollectionEquality()
+                .equals(other.passwordValidation, passwordValidation) &&
+            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
+            const DeepCollectionEquality()
+                .equals(other.isModified, isModified) &&
+            const DeepCollectionEquality().equals(other.isSucceed, isSucceed) &&
+            const DeepCollectionEquality().equals(other.isFailed, isFailed) &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            const DeepCollectionEquality()
+                .equals(other.successMsg, successMsg));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      email,
-      password,
-      emailValidation,
-      passwordValidation,
-      isLoading,
-      isModified,
-      isSucceed,
-      isFailed,
-      error,
-      successMsg);
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(password),
+      const DeepCollectionEquality().hash(emailValidation),
+      const DeepCollectionEquality().hash(passwordValidation),
+      const DeepCollectionEquality().hash(isLoading),
+      const DeepCollectionEquality().hash(isModified),
+      const DeepCollectionEquality().hash(isSucceed),
+      const DeepCollectionEquality().hash(isFailed),
+      const DeepCollectionEquality().hash(error),
+      const DeepCollectionEquality().hash(successMsg));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$_LoginStateCopyWith<_$_LoginState> get copyWith =>
-      __$$_LoginStateCopyWithImpl<_$_LoginState>(this, _$identity);
+  _$LoginStateCopyWith<_LoginState> get copyWith =>
+      __$LoginStateCopyWithImpl<_LoginState>(this, _$identity);
 }
 
 abstract class _LoginState extends LoginState {
   const factory _LoginState(
-      {required final String email,
-      required final String password,
-      required final FieldStatus emailValidation,
-      required final FieldStatus passwordValidation,
-      required final bool isLoading,
-      required final bool isModified,
-      required final bool isSucceed,
-      required final bool isFailed,
-      required final String error,
-      required final String successMsg}) = _$_LoginState;
+      {String? email,
+      String? password,
+      FieldStatus? emailValidation,
+      FieldStatus? passwordValidation,
+      bool? isLoading,
+      bool? isModified,
+      bool? isSucceed,
+      bool? isFailed,
+      String? error,
+      String? successMsg}) = _$_LoginState;
   const _LoginState._() : super._();
 
   @override
-  String get email;
+  String? get email;
   @override
-  String get password;
+  String? get password;
   @override
-  FieldStatus get emailValidation;
+  FieldStatus? get emailValidation;
   @override
-  FieldStatus get passwordValidation;
+  FieldStatus? get passwordValidation;
   @override
-  bool get isLoading;
+  bool? get isLoading;
   @override
-  bool get isModified;
+  bool? get isModified;
   @override
-  bool get isSucceed;
+  bool? get isSucceed;
   @override
-  bool get isFailed;
+  bool? get isFailed;
   @override
-  String get error;
+  String? get error;
   @override
-  String get successMsg;
+  String? get successMsg;
   @override
   @JsonKey(ignore: true)
-  _$$_LoginStateCopyWith<_$_LoginState> get copyWith =>
+  _$LoginStateCopyWith<_LoginState> get copyWith =>
       throw _privateConstructorUsedError;
 }

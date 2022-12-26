@@ -5,13 +5,13 @@ import 'package:bloc_with_freezed_with_test/login/bloc/bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 Login_response login_success_response =
-    new Login_response(status: 200, msg: "success");
+    new Login_response(status: 200, msg: "Suceesss");
 
 Login_response login_fail_response =
     new Login_response(status: 400, msg: "fail");
 
-LoginRequest loginRequest =
-    new LoginRequest(email: "ss@gmailcom",password: "[asss",token: "token");
+// LoginRequest loginRequest =
+//     new LoginRequest(email: "ss@gmailcom",password: "[asss",token: "token");
 
 Future<Login_response?> mockSuccessLoginHandler(
     LoginRequest loginRequest) async {
@@ -27,5 +27,5 @@ main() {
       build: () => LoginBloc(testLoginHandler: mockSuccessLoginHandler),
       act: (bloc) => bloc.add(LoginToAccount()),
       verify: (loginState) =>
-          expect(loginState.state, LoginState.succeed("Success")));
+          expect(loginState.state, LoginState.succeed()));
 }

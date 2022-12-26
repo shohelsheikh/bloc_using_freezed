@@ -39,4 +39,10 @@ class LoginRequest {
   set token(String value) {
     _token = value;
   }
+
+  String get token => _token.toString();
+
+  String get password => _password.toString();
+
+  String get email => _email.toString();
 }

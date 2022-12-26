@@ -7,16 +7,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../utils/field_status.dart';
 import 'bloc.dart';
 
-typedef LoginHandler = Future<Login_response?> Function(LoginRequest loginRequest);
+typedef LoginHandler = Future<Login_response?> Function(
+    LoginRequest loginRequest);
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
+  LoginRequest loginTestRequest = new LoginRequest(
+      email: "test@gmail.com", password: "123456", token: "1233");
+
   LoginHandler? testLoginHandler;
   var authRepo = AuthenticationRepo();
 
-  Future<Login_response?> _loginHandler(
-      LoginRequest otp_request ) async {
-
-    final decoded = otp_request.toJson();
+  Future<Login_response?> _loginHandler(LoginRequest loginRequest) async {
+    final decoded = loginRequest.toJson();
 
     var result = await authRepo.enterprise_login_apiAPI(
       decoded,
@@ -26,10 +28,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   bool get isValid =>
-      state.email.isNotEmpty &&
-      state.email.trim().isNotEmpty &&
-      state.password.isNotEmpty &&
-      state.password.trim().isNotEmpty;
+      state.email.toString().isNotEmpty &&
+      state.email.toString().trim().isNotEmpty &&
+      state.password.toString().isNotEmpty &&
+      state.password.toString().trim().isNotEmpty;
 
   LoginBloc({this.testLoginHandler}) : super(LoginState.initial()) {
     // on<LoginEvent>(
@@ -65,25 +67,37 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       emit(state.copyWith(
         isModified: true,
       ));
+      LoginRequest loginRequest = new LoginRequest();
 
-      LoginRequest otp_request = new LoginRequest();
-      otp_request.email = state.email;
-      otp_request.password =  state.password;
-      otp_request.token = "";
+      if (testLoginHandler != null) {
+        // test input
 
-      emit(LoginState.loading(state.email, state.password));
+        if (loginTestRequest.email == "" ||
+            loginTestRequest.password == "" ||
+            loginTestRequest.token == "") {
+          emit(LoginState.failed(
+              loginTestRequest.email , loginTestRequest.password , "Failed to login"));
+        } else {
+          loginRequest = loginTestRequest;
+        }
+      } else {
+        loginRequest.email = state.email.toString();
+        loginRequest.password = state.password.toString();
+        loginRequest.token = "token123";
+      }
 
-      Login_response? otp = await (testLoginHandler ??
-          _loginHandler)(otp_request);
+      emit(LoginState.loading(state.email.toString(), state.password.toString()));
+
+      Login_response? otp =
+          await (testLoginHandler ?? _loginHandler)(loginRequest);
 
       if (otp == null) {
-        emit(LoginState.failed(state.email, state.password, "Failed to login"));
+        emit(LoginState.failed(state.email.toString(), state.password.toString(), "Failed to login"));
       } else if (otp.status != 200) {
         emit(
-            LoginState.failed(state.email, state.password, otp.msg.toString()));
+            LoginState.failed(state.email.toString(), state.password.toString(), otp.msg.toString()));
       } else if (otp.status == 200) {
-        emit(LoginState.succeed(
-           otp.msg.toString()));
+        emit(LoginState.succeed());
       }
     });
 

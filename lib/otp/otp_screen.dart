@@ -5,14 +5,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../config/routing_constants.dart';
-import '../otp/otp_screen.dart';
+import '../login/bloc/bloc.dart';
+import '../login/bloc/login_bloc2.dart';
 import '../widgets/error_message.dart';
 import '../widgets/loading_indicator.dart';
-import 'bloc/bloc.dart';
 
 import 'package:bloc_with_freezed_with_test/widgets/show_toast.dart';
-class LoginScreen extends StatefulWidget {
-  LoginScreen();
+
+class OtpScreen extends StatefulWidget {
+  OtpScreen({Key? key}) : super(key:key);
+
 
   @override
   _LoginState createState() {
@@ -21,17 +23,17 @@ class LoginScreen extends StatefulWidget {
   }
 }
 
-class _LoginState extends State<LoginScreen>
+class _LoginState extends State<OtpScreen>
     with SingleTickerProviderStateMixin {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-    // late LoginBloc _bloc;
+    late LoginBloc _bloc;
 
   @override
   void initState() {
     super.initState();
-    // _bloc = LoginBloc();
+    _bloc = LoginBloc();
     print(" ==== initState");
   }
 
@@ -62,7 +64,7 @@ class _LoginState extends State<LoginScreen>
   @override
   void dispose() {
     print(" ==== dispose");
-    // _bloc.close();
+    _bloc.close();
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -75,10 +77,10 @@ class _LoginState extends State<LoginScreen>
   }
 
   Widget _buildEditScreen(BuildContext context) {
-     return BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
-       LoginBloc _bloc = BlocProvider.of<LoginBloc>(context);
-       LoginBloc bloc2 = BlocProvider.of<LoginBloc>(context);
-       return SafeArea(
+    return BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
+      LoginBloc _bloc = BlocProvider.of<LoginBloc>(context);
+      LoginBloc2 bloc2 = BlocProvider.of<LoginBloc2>(context);
+      return SafeArea(
         child: Scaffold(
           appBar: AppBar(
             leading: IconButton(
@@ -90,7 +92,7 @@ class _LoginState extends State<LoginScreen>
                 Navigator.pop(context);
               },
             ),
-            title: const Text('Login Test',
+            title:   Text('OTP '+ _bloc.state.email.toString(),
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: 20,
@@ -145,13 +147,13 @@ class _LoginState extends State<LoginScreen>
                   textColor: Colors.white,
                   disabledTextColor: Colors.black,
                   onPressed: (!state.isModified! ||
-                              !_bloc.isValid)
+                      !_bloc.isValid)
                       ? null
                       : () {
-                          !state.isModified !|| !_bloc.isValid
-                              ? null
-                              : _bloc.add(  LoginToAccount());
-                        },
+                    !state.isModified !|| !_bloc.isValid
+                        ? null
+                        : _bloc.add(  LoginToAccount());
+                  },
                   child: Text(
                     !state.isModified! || !_bloc.isValid || state.isLoading!
                         ? "Save"
@@ -230,8 +232,8 @@ class _LoginState extends State<LoginScreen>
                 _detailedWidget(_bloc, state),
                 state.isBusy()!
                     ? Positioned.fill(
-                        child: LoadingIndicator(
-                            text:  'Loading'))
+                    child: LoadingIndicator(
+                        text:  'Loading'))
                     : Container(),
               ],
             ),

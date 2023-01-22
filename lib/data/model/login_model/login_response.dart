@@ -1,7 +1,7 @@
 /// status : 200
 /// msg : "Login Successful"
-/// enterprise_id : 80
-/// img : "Enterprise_logo/download_PeVTpVu.jpg"
+///  id : 80
+/// img : " logo/download_PeVTpVu.jpg"
 /// email : "nakorex937@exoacre.com"
 /// username : "Aryan Man"
 

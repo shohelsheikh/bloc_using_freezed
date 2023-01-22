@@ -10,9 +10,9 @@ import 'bloc.dart';
 typedef LoginHandler = Future<Login_response?> Function(
     LoginRequest loginRequest);
 
-class LoginBloc extends Bloc<LoginEvent, LoginState> {
+class LoginBloc2 extends Bloc<LoginEvent, LoginState> {
   LoginRequest loginTestRequest =
-      new LoginRequest(email: "test@gmail.com", password: "", token: "1233");
+      new LoginRequest(email: "test@gmai222222l.com", password: "", token: "12223232320033");
   LoginRequest loginRequest = new LoginRequest();
 
   LoginHandler? testLoginHandler;
@@ -35,7 +35,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       state.password.toString().isNotEmpty &&
       state.password.toString().trim().isNotEmpty;
 
-  LoginBloc({this.testLoginHandler}) : super(LoginState.initial())
+  LoginBloc2({this.testLoginHandler}) : super(LoginState.initial())
 
   {
 

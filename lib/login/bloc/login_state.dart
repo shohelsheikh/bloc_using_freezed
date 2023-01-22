@@ -10,21 +10,21 @@ abstract class LoginState implements _$LoginState {
 
 // test
   const factory LoginState(
-      {
-      String? email,
-      String? password,
-      FieldStatus? emailValidation,
-      FieldStatus? passwordValidation,
-      bool? isLoading,
-      bool? isModified,
-      bool? isSucceed,
-      bool? isFailed,
-      String? error,
-      String? successMsg}) = _LoginState;
+      {String email,
+      String password,
+      FieldStatus emailValidation,
+      FieldStatus passwordValidation,
+      bool isLoading,
+      bool isModified,
+      bool isSucceed,
+      bool isFailed,
+      String error,
+      String successMsg}) = _LoginState;
 
   bool? isBusy() => isLoading;
 
-  List<Object> get props => [email.toString(), password.toString(),successMsg.toString()];
+  List<Object> get props =>
+      [email.toString(), password.toString(), successMsg.toString()];
 
   static LoginState initial() => const LoginState(
       email: "",

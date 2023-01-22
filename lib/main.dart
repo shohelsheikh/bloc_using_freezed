@@ -12,9 +12,6 @@ void main() {
   runApp(MyApp());
 }
 
-
-
-
 class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
@@ -30,20 +27,10 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-
-        BlocProvider(
-          create: (context) => LoginBloc(),
-        ),
-      ],
-      child: const MaterialApp(
-        onGenerateRoute: router.generateRoute,
-        initialRoute: loginScreenRoute,
-        title: "Test Bloc",
-      ),
-
-
+    return const MaterialApp(
+      onGenerateRoute: router.generateRoute,
+      initialRoute: loginScreenRoute,
+      title: "Test Bloc",
     );
   }
 }
